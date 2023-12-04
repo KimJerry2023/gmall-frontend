@@ -8,15 +8,15 @@ const DEFAULT_CACHE_TIME = 60 * 60 * 24 * 7;
  */
 export const createStorage = ({
   prefixKey = "",
-  storage = localStorage,
+  storage = null,
 } = {}) => {
   /**
    * 本地缓存类
    * @class Storage
    */
-  if (typeof window !== "undefined") {
+  if (typeof localStorage !== "undefined") {
     const Storage = class {
-      private storage = storage;
+      private storage = storage || localStorage
       private prefixKey?: string = prefixKey;
       private getKey(key: string) {
         return `${this.prefixKey}${key}`.toUpperCase();

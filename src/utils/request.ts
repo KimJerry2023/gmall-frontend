@@ -1,10 +1,10 @@
 import axios from "axios";
-import { message, Modal } from "antd";
 import type { AxiosRequestConfig } from "axios";
-import { ACCESS_TOKEN_KEY } from "@/enums/cacheEnum";
-import { Storage } from "@/utils/storage";
+import { redirect } from "next/navigation";
+// import { Storage } from "@/utils/storage";
+// import { cookies } from 'next/headers'
 
-const baseUrl = '/api/v1'
+const baseUrl = 'http://127.0.0.1:4000/api/v1'
 
 export interface RequestOptions {
   /** 当前接口权限, 不需要鉴权的接口请忽略， 格式：sys:user:add */
@@ -21,17 +21,19 @@ export interface RequestOptions {
 
 const UNKNOWN_ERROR = "未知错误，请重试";
 
-const service = axios.create({
+export const service = axios.create({
   timeout: 6000,
+  withCredentials: true, 
 });
 
 service.interceptors.request.use(
   (config) => {
-    const token = Storage.get(ACCESS_TOKEN_KEY);
-    if (token && token.headers) {
-      // 请求token信息，请根据实际情况进行修改
-      config.headers["Authorization"] = token;
-    }
+    // const sessionId = cookies().get('SESSIONID')?.value;
+    // if (sessionId) {
+    //   // 请求token信息，请根据实际情况进行修改
+    //   config.headers["Authorization"] = sessionId;
+    // }
+    console.log('请求拦截')
     return config;
   },
   (error) => {
@@ -44,36 +46,44 @@ service.interceptors.response.use(
     const res = response.data;
     // if the custom code is not 200, it is judged as an error
     if (res.code !== 200) {
-      message.error(res.message || UNKNOWN_ERROR);
+      console.log('error: 响应拦截')
+      console.error(res.message || UNKNOWN_ERROR);
       // Illegal token
       if (res.code === 11001 || res.code === 11002) {
-        window.localStorage.clear();
-        window.location.reload();
-        Modal.confirm({
-          title: "警告",
-          content:
-            res.message || "账号异常，您可以取消停留在该页上，或重新登录",
-          okText: "重新登录",
-          cancelText: "取消",
-          onOk: () => {
-            localStorage.clear();
-            window.location.reload();
-          },
-        });
+        // window.localStorage.clear();
+        // window.location.reload();
+        console.error({
+          title: '账号异常',
+          message: '您可以取消停留在该页上，或重新登录'
+        })
+        redirect('/login')
+        // Modal.confirm({
+        //   title: "警告",
+        //   content:
+        //     res.message || "账号异常，您可以取消停留在该页上，或重新登录",
+        //   okText: "重新登录",
+        //   cancelText: "取消",
+        //   onOk: () => {
+        //     localStorage.clear();
+        //     window.location.reload();
+        //   },
+        // });
+
       }
-      const error = new Error(res.message || UNKNOWN_ERROR) as Error & {
-        code: any;
-      };
-      error.code = res.code;
-      return Promise.reject(error);
+      // const error = new Error(res.message || UNKNOWN_ERROR) as Error & {
+      //   code: any;
+      // };
+      // error.code = res.code;
+      return Promise.resolve(response);
     } else {
       return res;
     }
   },
   (error) => {
     // 处理422 或者 500 的错误异常提示
+    console.log('响应拦截')
     const errMsg = error?.response?.data?.message ?? UNKNOWN_ERROR;
-    message.error(errMsg);
+    console.error(errMsg);
     error.message = errMsg;
     return Promise.reject(error);
   }
@@ -93,23 +103,26 @@ export type BaseRepsonse<T = any> = Promise<Response<T>>;
  * @param url - request url
  * @param data - request data or params
  */
-export const request = async <T = any>(
+export const http = async <T = any>(
     config: AxiosRequestConfig,
     options: RequestOptions = {},
 ): Promise<T> => {
     try {
+        console.log('请求发出：')
         const { successMsg, errorMsg, permCode, isMock, isGetDataDirectly = true } = options;
         // 如果当前是需要鉴权的接口 并且没有权限的话 则终止请求发起
-        if (permCode) {
-          message.error('你没有访问该接口的权限，请联系管理员')
-          return Promise.reject()
-        }
-        config.url = `${baseUrl}/${config.url}`
+        // debugger
+        // if (permCode) {
+        //   console.error('你没有访问该接口的权限，请联系管理员')
+        //   return Promise.reject()
+        // }
+        config.url = `${baseUrl}${config.url}`
         const res = await service.request(config)
-        successMsg && message.success(successMsg)
-        errorMsg && message.error(errorMsg)
+        successMsg && console.info(successMsg)
+        errorMsg && console.error(errorMsg)
         return isGetDataDirectly ? res.data : res;
     } catch (error: any) {
-        return Promise.reject(error)
+        return Promise.resolve(error)
     }
 }
+

@@ -1,6 +1,6 @@
 import { request } from '@/utils/request'
 
-export function getPing() {
+export async function getPing() {
     return request({
         url: '/ping',
         method: 'get'
