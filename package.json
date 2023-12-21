@@ -20,7 +20,7 @@
     "lodash": "^4.17.21",
     "next": "14.0.3",
     "next-i18next": "^15.0.0",
-    "next-theme": "^0.1.5",
+    "next-themes": "^0.2.1",
     "qs": "^6.11.2",
     "react": "^18",
     "react-dom": "^18",

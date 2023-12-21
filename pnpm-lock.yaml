@@ -38,9 +38,9 @@ dependencies:
   next-i18next:
     specifier: ^15.0.0
     version: 15.0.0(i18next@23.7.7)(next@14.0.3)(react-i18next@13.5.0)(react@18.2.0)
-  next-theme:
-    specifier: ^0.1.5
-    version: 0.1.5(next@14.0.3)(react-dom@18.2.0)(react@18.2.0)
+  next-themes:
+    specifier: ^0.2.1
+    version: 0.2.1(next@14.0.3)(react-dom@18.2.0)(react@18.2.0)
   qs:
     specifier: ^6.11.2
     version: 6.11.2
@@ -4875,9 +4875,8 @@ packages:
       react-i18next: 13.5.0(i18next@23.7.7)(react-dom@18.2.0)(react@18.2.0)
     dev: false
 
-  /next-theme@0.1.5(next@14.0.3)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-WR8UCLEFjWvRl+UO2lTM4pGo7R4jzGZqQ6YL3hiL1Ns587Qb91GhJZLPu/Aa4ExtGQ/5wlcDX8zDYZoCN9oDPw==}
-    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+  /next-themes@0.2.1(next@14.0.3)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-B+AKNfYNIzh0vqQQKqQItTS8evEouKD7H5Hj3kmuPERwddR2TxvDSFZuTj6T7Jfn1oyeUyJMydPl1Bkxkh0W7A==}
     peerDependencies:
       next: '*'
       react: '*'
