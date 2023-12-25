@@ -6,9 +6,11 @@ import {
   DropdownTrigger,
   NavbarItem,
 } from '@nextui-org/react'
+import { useRouter } from 'next/navigation'
 import { DarkModeSwitch } from './darkmodeswitch'
 
 export const UserDropdown = () => {
+  const router = useRouter()
   return (
     <Dropdown>
       <NavbarItem>
@@ -38,7 +40,7 @@ export const UserDropdown = () => {
         <DropdownItem key="system">System</DropdownItem>
         <DropdownItem key="configurations">Configurations</DropdownItem>
         <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
-        <DropdownItem key="logout" color="danger" className="text-danger ">
+        <DropdownItem key="logout" color="danger" className="text-danger" onClick={() => router.push('/sign-in')}>
           Log Out
         </DropdownItem>
         <DropdownItem key="switch">

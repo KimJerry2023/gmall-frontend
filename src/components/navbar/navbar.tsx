@@ -7,11 +7,7 @@ import { BurguerButton } from './burguer-button';
 import { NotificationsDropdown } from './notifications-dropdown';
 import { UserDropdown } from './user-dropdown';
 
-type Props = {
-  children: React.ReactNode
-}
-
-export const NavbarWrapper = ({ children }: Props) => {
+export const NavbarWrapper = ({ children }: Readonly<{children: React.ReactNode}>) => {
   return (
     <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
       <Navbar

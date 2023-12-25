@@ -7,9 +7,7 @@ export const Providers = ({ children }: { children: React.ReactNode}) => {
   return (
     <NextThemesProvider defaultTheme="system" attribute="class">
       <NextUIProvider>
-        <Layout>
-          {children}
-        </Layout>
+        {children}
       </NextUIProvider>
     </NextThemesProvider>
   );

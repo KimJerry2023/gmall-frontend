@@ -4,11 +4,7 @@ import { NavbarWrapper } from '@/components/navbar/navbar'
 import { SidebarWrapper } from '@/components/sidebar/sidebar';
 import { SidebarContext } from '@/components/layout/layout_context'
 
-type Props = {
-  children: React.ReactNode
-}
-
-export const Layout = ({ children }: Props) => {
+export const Layout = ({ children }: Readonly<{children: React.ReactNode}>) => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [_, setLocked] = useLockedBody(false)
   const handleToggleSidebar = () => {
@@ -25,7 +21,9 @@ export const Layout = ({ children }: Props) => {
     >
       <section className="flex">
         <SidebarWrapper />
-        <NavbarWrapper>{children}</NavbarWrapper>
+        <NavbarWrapper>
+          {children}
+        </NavbarWrapper>
       </section>
     </SidebarContext.Provider>
   );
