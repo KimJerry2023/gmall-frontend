@@ -68,7 +68,7 @@ const SignIn: React.FC = () => {
               </div>
               <button
                 className="linear w-full rounded-xl bg-brand-500 py-3 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200">
-                  Sign In
+                Sign In
               </button>
               <div className="mt-4">
                 <span className="text-sm font-medium text-navy-700 dark:text-gray-500">
@@ -88,9 +88,10 @@ const SignIn: React.FC = () => {
               className={`absolute flex h-full w-full items-end justify-center bg-gradient-to-br from-brand-400 to-brand-600 bg-cover bg-center lg:rounded-bl-[120px] xl:rounded-bl-[200px]`}>
               <div className="relative flex h-full w-full">
                 <div
-                  style={{ backgroundImage: `url(${authImg.src})` }}
-                  className="flex h-full w-full bg-cover"
-                />
+                  className="flex h-full w-full items-center justify-center text-white text-[48px] leading-[48px]"
+                >
+                  Gmall Shop Admin
+                </div>
               </div>
             </div>
           </div>
