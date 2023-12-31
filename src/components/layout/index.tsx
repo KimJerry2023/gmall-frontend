@@ -1,3 +1,4 @@
+'use client'
 import { useState } from 'react'
 import { useLockedBody } from '@/components/hooks/useBodyLock';
 import { NavbarWrapper } from '@/components/navbar/navbar'

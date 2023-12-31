@@ -1,7 +1,7 @@
 'use client'
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { NextUIProvider } from "@nextui-org/react";
-import { Layout } from '@/components/layout'
+// import { Layout } from '@/components/layout'
 
 export const Providers = ({ children }: { children: React.ReactNode}) => {
   return (

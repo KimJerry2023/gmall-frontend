@@ -1,11 +1,10 @@
-import React from "react";
 import { Metadata } from "next";
 import Link from 'next/link'
 import { Checkbox } from "@nextui-org/react";
 import { FcGoogle } from 'react-icons/fc'
+import { useTranslation } from "@/i18n";
 import Footer from "@/components/Footer";
 import InputField from "@/components/fields/InputField";
-import authImg from 'public/images/auth.png'
 
 export const metadata: Metadata = {
   title: "Signin Page | Next.js E-commerce Dashboard Template",
@@ -13,7 +12,10 @@ export const metadata: Metadata = {
   // other metadata
 };
 
-const SignIn: React.FC = () => {
+export default async function SignIn ({ params: { lng }} : Readonly<{ params: {
+	lng: string
+}}>) {
+  const { t } = await useTranslation(lng, 'sign')
   return (
     <div className="relative flex">
       <div className="mx-auto flex min-h-full w-full flex-col justify-start pt-12 md:max-w-[75%] lg:h-screen lg:max-w-[1013px] lg:px-8 lg:pt-0 xl:h-[100vh] xl:max-w-[1383px] xl:px-0 xl:pl-[70px]">
@@ -21,7 +23,7 @@ const SignIn: React.FC = () => {
           <div className="mb-16 mt-16 flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
             <div className="mt-[10vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
               <h3 className="mb-2.5 text-4xl font-bold text-navy-700 dark:text-white">
-                Sign In
+                {t('title')}
               </h3>
               <p className="mb-9 ml-1 text-base text-gray-600/70">
                 Enter your username and password to sign in!
@@ -101,5 +103,3 @@ const SignIn: React.FC = () => {
     </div>
   );
 };
-
-export default SignIn;
