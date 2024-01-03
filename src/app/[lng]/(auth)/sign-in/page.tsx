@@ -1,21 +1,29 @@
-import { Metadata } from "next";
+'use client'
 import Link from 'next/link'
+import { use, useEffect } from 'react'
 import { Checkbox } from "@nextui-org/react";
 import { FcGoogle } from 'react-icons/fc'
 import { useTranslation } from "@/i18n";
 import Footer from "@/components/Footer";
 import InputField from "@/components/fields/InputField";
+import { http } from '@/utils/request'
 
-export const metadata: Metadata = {
-  title: "Signin Page | Next.js E-commerce Dashboard Template",
-  description: "This is Signin page for TailAdmin Next.js",
-  // other metadata
-};
-
-export default async function SignIn ({ params: { lng }} : Readonly<{ params: {
+export default function SignIn ({ params: { lng }} : Readonly<{ params: {
 	lng: string
 }}>) {
-  const { t } = await useTranslation(lng, 'sign')
+  const { t } = use(useTranslation(lng, 'sign'))
+  const getPing = async () => {
+    const res = await http({
+      method: 'get',
+      url: '/ping'
+    })
+    if (res) {
+      console.log('res: ', res)
+    }
+  }
+  useEffect(() => {
+    getPing()
+  }, [])
   return (
     <div className="relative flex">
       <div className="mx-auto flex min-h-full w-full flex-col justify-start pt-12 md:max-w-[75%] lg:h-screen lg:max-w-[1013px] lg:px-8 lg:pt-0 xl:h-[100vh] xl:max-w-[1383px] xl:px-0 xl:pl-[70px]">
@@ -69,6 +77,7 @@ export default async function SignIn ({ params: { lng }} : Readonly<{ params: {
                 </a>
               </div>
               <button
+                onClick={() => getPing()}
                 className="linear w-full rounded-xl bg-brand-500 py-3 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200">
                 Sign In
               </button>

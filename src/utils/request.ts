@@ -1,9 +1,5 @@
 import axios from "axios";
 import type { AxiosRequestConfig } from "axios";
-import { redirect } from "next/navigation";
-// import { Storage } from "@/utils/storage";
-// import { cookies } from 'next/headers'
-
 const baseUrl = 'http://127.0.0.1:4000/api/v1'
 
 export interface RequestOptions {
@@ -23,7 +19,6 @@ const UNKNOWN_ERROR = "未知错误，请重试";
 
 export const service = axios.create({
   timeout: 6000,
-  withCredentials: true, 
 });
 
 service.interceptors.request.use(
@@ -45,18 +40,17 @@ service.interceptors.response.use(
   (response) => {
     const res = response.data;
     // if the custom code is not 200, it is judged as an error
-    if (res.code !== 200) {
+
+    if (res.status !== 200) {
       console.log('error: 响应拦截')
       console.error(res.message || UNKNOWN_ERROR);
       // Illegal token
-      if (res.code === 11001 || res.code === 11002) {
-        // window.localStorage.clear();
-        // window.location.reload();
+      if (res.status === 11001 || res.status === 11002) {
         console.error({
           title: '账号异常',
           message: '您可以取消停留在该页上，或重新登录'
         })
-        redirect('/login')
+        
         // Modal.confirm({
         //   title: "警告",
         //   content:
