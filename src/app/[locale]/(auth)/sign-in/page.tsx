@@ -1,4 +1,3 @@
-'use client'
 import Link from 'next/link'
 import { Checkbox } from '@nextui-org/react'
 import { FcGoogle } from 'react-icons/fc'
@@ -6,16 +5,16 @@ import Footer from '@/components/Footer'
 import InputField from '@/components/fields/InputField'
 import TranslationsProvider from '@/components/Language/TranslationsProvider'
 import LanguageChanger from '@/components/Language/LanguageChange'
+import Data from './data'
 import initTranslations from '@/app/i18n'
-import { http } from '@/utils/request'
 
 const i18nNamespaces = ['home']
 
 export default async function SignIn({
   params: { locale },
-}: {
+}: Readonly<{
   params: { locale: string }
-}) {
+}>) {
   const { t, resources } = await initTranslations(locale, i18nNamespaces)
   return (
     <TranslationsProvider
@@ -34,6 +33,7 @@ export default async function SignIn({
                 <p className="mb-9 ml-1 text-base text-gray-600/70">
                   Enter your username and password to sign in!
                 </p>
+                <Data />
                 <LanguageChanger />
                 <div className="mb-6 flex h-[50px] w-full items-center justify-center gap-2 rounded-xl bg-lightPrimary hover:cursor-pointer dark:bg-navy-800 dark:text-white">
                   <div className="rounded-full text-xl">

@@ -10,12 +10,12 @@ export function generateStaticParams() {
 export default function RootLayout({
   children,
   params: { locale }
-}: {
+}: Readonly<{
   children: React.ReactNode,
   params: { locale: string }
-  }) {
+  }>) {
   return (
-    <html lang={locale} dir={dir(locale)}>
+    <html lang={locale} dir={dir(locale)} className="dark" suppressHydrationWarning>
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <head />
       <body className="dark" suppressHydrationWarning>
