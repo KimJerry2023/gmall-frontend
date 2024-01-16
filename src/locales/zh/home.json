@@ -1,5 +1,6 @@
 {
   "header": "Nextjs 应用",
   "greeting": "美好的一天",
-  "page2": "跳转到第二页"
+  "page2": "跳转到第二页",
+  "error": "您要找的页面失踪了"
 }

@@ -6,7 +6,6 @@ export const getPing = async () => {
     method: 'get',
     url: '/ping'
   })
-  console.log('res: ', res)
   return res
 }
 
