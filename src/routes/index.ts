@@ -39,6 +39,10 @@ export const PATH_APPS = {
   tasks: path(ROOT_APPS, '/tasks'),
 };
 
+export const PATH_DOCS = {
+  root: 'https://mantine-analytics-dashboard-docs.netlify.app/',
+};
+
 export const PATH_PAGES = {
   root: ROOTS_PAGES,
   pricing: path(ROOTS_PAGES, '/pricing'),
@@ -73,9 +77,9 @@ export const PATH_CALENDAR = {
 
 export const PATH_AUTH = {
   root: ROOTS_AUTH,
-  signin: path(ROOTS_AUTH, '/signin'),
-  signup: path(ROOTS_AUTH, '/signup'),
-  passwordReset: path(ROOTS_AUTH, '/password-reset'),
+  signin: path('', '/sign-in'),
+  signup: path('', '/sign-up'),
+  passwordReset: path('', '/password-reset'),
   clerk: path(ROOTS_AUTH, '/clerk'),
   auth0: path(ROOTS_AUTH, '/auth0'),
 };
@@ -84,4 +88,9 @@ export const PATH_START = {
   root: ROOTS_AUTH_PROVIDERS,
   clerk: path(ROOTS_AUTH_PROVIDERS, '/clerk'),
   auth0: path(ROOTS_AUTH_PROVIDERS, '/auth0'),
+}
+
+export const PATH_GITHUB = {
+  org: 'https://github.com/KimJerry2023/gmall',
+  repo: 'https://github.com/KimJerry2023/gmall-frontend'
 }

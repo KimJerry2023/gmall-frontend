@@ -2,5 +2,7 @@
   "header": "My Nextjs App",
   "greeting": "Have a great day!",
   "page2": "Go to Page 2",
-  "error": "Page Not Found"
+  "error": "Page Not Found",
+  "reset_password": "Password Reset",
+  "forgot_password": "Forgot Your Password"
 }
