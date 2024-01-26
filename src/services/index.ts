@@ -15,3 +15,33 @@ export const usePing = () => {
     queryFn: () => getPing()
   })
 }
+
+export const getSales = async () => {
+  const res = await http({
+    method: 'get',
+    url: '/sales'
+  })
+  return res
+}
+
+export const useSales = () => {
+  return useQuery({
+    queryKey: ['sales'],
+    queryFn: () => getSales()
+  })
+}
+
+export const getDaySales = async () => {
+  const res = await http({
+    method: 'get',
+    url: '/day/sales'
+  })
+  return res
+}
+
+export const useDaySales = () => {
+  return useQuery({
+    queryKey: ['day_sales'],
+    queryFn: () => getDaySales()
+  })
+}

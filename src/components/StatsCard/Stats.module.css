@@ -24,3 +24,8 @@
   font-weight: 500;
   text-transform: uppercase;
 }
+
+.card {
+  padding: 10px;
+  box-shadow: var(--mantine-shadow-md);
+}

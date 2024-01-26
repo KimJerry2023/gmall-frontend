@@ -306,7 +306,7 @@ const HeaderNav = (props: HeaderNavProps) => {
         <Menu shadow="lg" width={320}>
           <Menu.Target>
             <Indicator processing size={10} offset={6}>
-              <Tooltip label="Messages">
+              <Tooltip label="message">
                 <ActionIcon size="lg" title="Nessages">
                   <IconMessageCircle size={ICON_SIZE} />
                 </ActionIcon>

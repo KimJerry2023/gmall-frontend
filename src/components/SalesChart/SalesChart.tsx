@@ -13,7 +13,7 @@ import dynamic from 'next/dynamic';
 import { DataTable } from 'mantine-datatable';
 import { IconDotsVertical } from '@tabler/icons-react';
 import { ErrorAlert, Surface } from '@/components';
-import { useFetchData } from '@/hooks';
+import { useSales } from '@/services';
 
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
@@ -23,12 +23,7 @@ const SalesChart = ({ ...others }: SalesChartProps) => {
   const theme = useMantineTheme();
   const { colorScheme } = useMantineColorScheme();
   const series = [44, 55, 41, 17, 15];
-  const {
-    data: salesData,
-    error: salesError,
-    loading: salesLoading,
-  } = useFetchData('/mocks/Sales.json');
-
+  const { data, isError, isLoading } = useSales()
   const options: any = {
     chart: { type: 'donut', fontFamily: 'Open Sans, sans-serif' },
     legend: { show: false },
@@ -106,10 +101,10 @@ const SalesChart = ({ ...others }: SalesChartProps) => {
         height={160}
         width={'100%'}
       />
-      {salesError ? (
+      {isError ? (
         <ErrorAlert
           title="Error loading sales data"
-          message={salesError.toString()}
+          message={isError.toString()}
         />
       ) : (
         <DataTable
@@ -119,9 +114,9 @@ const SalesChart = ({ ...others }: SalesChartProps) => {
             { accessor: 'revenue' },
             { accessor: 'value' },
           ]}
-          records={salesData.slice(0, 4)}
+          records={data?.slice(0, 4)}
           height={200}
-          fetching={salesLoading}
+          fetching={isLoading}
         />
       )}
     </Surface>

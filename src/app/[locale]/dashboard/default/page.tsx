@@ -14,14 +14,14 @@ import { IconChevronRight } from '@tabler/icons-react';
 import {
   MobileDesktopChart,
   PageHeader,
-  ProjectsTable,
   RevenueChart,
   SalesChart,
-  StatsGrid,
 } from '@/components';
+import Task from './projectTable'
+import StatsList from './stats';
 import Link from 'next/link';
 import { PATH_TASKS } from '@/routes';
-import { useFetchData } from '@/hooks';
+import { useDaySales, useSales } from '@/services';
 
 const PAPER_PROPS: PaperProps = {
   p: 'md',
@@ -31,17 +31,6 @@ const PAPER_PROPS: PaperProps = {
 };
 
 function Page() {
-  const {
-    data: projectsData,
-    error: projectsError,
-    loading: projectsLoading,
-  } = useFetchData('/mocks/Projects.json');
-  const {
-    data: statsData,
-    error: statsError,
-    loading: statsLoading,
-  } = useFetchData('/mocks/StatsGrid.json');
-
   return (
     <>
       <>
@@ -54,12 +43,7 @@ function Page() {
       <Container fluid>
         <Stack gap="lg">
           <PageHeader title="Default dashboard" withActions={true} />
-          <StatsGrid
-            data={statsData.data}
-            loading={statsLoading}
-            error={statsError}
-            paperProps={PAPER_PROPS}
-          />
+          <StatsList />
           <Grid gutter={{ base: 5, xs: 'md', md: 'xl', xl: 50 }}>
             <Grid.Col span={8}>
               <RevenueChart {...PAPER_PROPS} />
@@ -85,11 +69,7 @@ function Page() {
                     View all
                   </Button>
                 </Group>
-                <ProjectsTable
-                  data={projectsData.slice(0, 6)}
-                  error={projectsError}
-                  loading={projectsLoading}
-                />
+                <Task />
               </Paper>
             </Grid.Col>
           </Grid>

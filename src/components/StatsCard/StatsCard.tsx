@@ -12,7 +12,7 @@ const StatsCard = ({ data, ...others }: StatsCardProps) => {
   const DiffIcon = diff > 0 ? IconArrowUpRight : IconArrowDownRight;
 
   return (
-    <Surface component={Paper} {...others}>
+    <Surface component={Paper} {...others} className={classes.card}>
       <Group justify="space-between">
         <Text size="xs" c="dimmed" className={classes.title}>
           {title}
