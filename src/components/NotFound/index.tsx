@@ -13,17 +13,15 @@ import { PATH_DASHBOARD } from '@/routes'
 import { IconChevronLeft, IconHome2 } from '@tabler/icons-react';
 import { useRouter } from 'next/navigation';
 import classes from './not-found.module.css'
-import { useTranslation } from 'react-i18next';
 
-function NotFound() {
-  const { t } = useTranslation();
+function NotFound(dictionary: Record<string, any>) {
   const router = useRouter();
   const theme = useMantineTheme();
 
   return (
     <>
       <>
-        <title>Page Not Found | DesignSparx</title>
+        <title>{dictionary.notFound}</title>
         <meta
           name="description"
           content="Explore our versatile dashboard website template featuring a stunning array of themes and meticulously crafted components. Elevate your web project with seamless integration, customizable themes, and a rich variety of components for a dynamic user experience. Effortlessly bring your data to life with our intuitive dashboard template, designed to streamline development and captivate users. Discover endless possibilities in design and functionality today!"
@@ -38,9 +36,9 @@ function NotFound() {
         }}
       >
         <Stack>
-          <div className={classes.label}>404</div>
+          <div className={classes.label}>{dictionary.page404}</div>
           <Title className={classes.title}>
-            {t('error')}
+            {dictionary.notFound}
           </Title>
           <Text fz="md" ta="center" className={classes.description}>
             Unfortunately, this is only a 404 page. You may have mistyped the

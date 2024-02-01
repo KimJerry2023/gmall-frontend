@@ -1,6 +1,4 @@
-import { Button } from '@nextui-org/react'
-
 const About = () => {
-    return <Button color="primary">Click Me</Button>
+    return <div>About Page</div>
 }
 export default About

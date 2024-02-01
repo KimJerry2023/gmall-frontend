@@ -1,12 +1,12 @@
 'use client';
 import { Center, Stack, useMantineTheme } from "@mantine/core";
 import Image from 'next/image'
-import { useColorScheme } from '@mantine/hooks'
+// import { useColorScheme } from '@mantine/hooks'
 import logo from 'public/images/logo-no-background.png'
 
 function AuthLayout({ children }: {children: React.ReactNode}) {
-  const theme = useMantineTheme()
-  const colorScheme = useColorScheme()
+  // const theme = useMantineTheme()
+  // const colorScheme = useColorScheme()
   return (
     <Center
       style={{

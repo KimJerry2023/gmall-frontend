@@ -6,6 +6,7 @@ import { ChangeEvent } from 'react'
 
 export default function LanguageChanger() {
   const { i18n } = useTranslation()
+  debugger
   const currentLocale = i18n.language
   const router = useRouter()
   const currentPathname = usePathname()
@@ -19,7 +20,6 @@ export default function LanguageChanger() {
     date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000)
     const expires = '; expires=' + date.toUTCString()
     document.cookie = `NEXT_LOCALE=${newLocale};expires=${expires};path=/`
-
     // redirect to the new locale path
     if (
       currentLocale === i18nConfig.defaultLocale &&

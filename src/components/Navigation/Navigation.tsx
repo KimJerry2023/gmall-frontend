@@ -31,7 +31,7 @@ import {
   IconX,
 } from '@tabler/icons-react';
 import Logo from '@/components/Logo/Logo'
-import UserProfileButton from '@/components/UserButton/UserButton';
+// import UserProfileButton from '@/components/UserButton/UserButton';
 import {
   PATH_APPS,
   PATH_AUTH,
@@ -39,7 +39,7 @@ import {
   PATH_DOCS,
   PATH_PAGES,
 } from '@/routes';
-import UserProfileData from 'public/mock/UserProfile.json';
+// import UserProfileData from 'public/mock/UserProfile.json'
 import { useMediaQuery } from '@mantine/hooks';
 import classes from './Navigation.module.css';
 import { LinksGroup } from '@/components/Navigation/Links/Links';
@@ -171,11 +171,11 @@ const Navigation = ({ onClose, ...others }: NavigationProps) => {
       </ScrollArea>
 
       <div className={classes.footer}>
-        <UserProfileButton
+        {/* <UserProfileButton
           email={UserProfileData.email}
           image={UserProfileData.avatar}
           name={UserProfileData.name}
-        />
+        /> */}
       </div>
     </nav>
   );

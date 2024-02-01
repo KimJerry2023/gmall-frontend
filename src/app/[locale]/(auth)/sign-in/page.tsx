@@ -13,10 +13,9 @@ import {
 import Link from 'next/link'
 import { PATH_AUTH, PATH_DASHBOARD } from '@/routes'
 import type { Metadata } from 'next'
+import { getDictionary } from '@/i18n/getDictionary';
+import type { Locale } from '@/i18n/config';
 import Surface from '@/components/Surface'
-import TranslationsProvider from '@/components/Language/TranslationsProvider'
-// import LanguageChanger from '@/components/Language/LanguageChange'
-import initTranslations from '@/app/i18n'
 import classes from './page.module.css'
 import Data from './data'
 
@@ -33,18 +32,14 @@ export const metadata: Metadata = {
   creator: 'Kim'
 }
 
-const i18nNamespaces = ['home']
-export default async function SignIn({ params: { locale } }: Readonly<{ params: { locale: string } }>) {
-  const { t, resources } = await initTranslations(locale, i18nNamespaces)
+export default async function SignIn({ params: { locale } }: Readonly<{ params: { locale: Locale } }>) {
+  const dictionary = await getDictionary(locale)
+  // const { t, resources } = await initTranslations(locale, i18nNamespaces)
   const LINK_PROPS: TextProps = {
     className: classes.link,
   }
   return (
-    <TranslationsProvider
-      resources={resources}
-      locale={locale}
-      namespaces={i18nNamespaces}
-    >
+    <>
       <>
         <>
           <title>Sign in | DesignSpare</title>
@@ -55,7 +50,7 @@ export default async function SignIn({ params: { locale } }: Readonly<{ params: 
         </>
       </>
       <Data />
-      <Title ta="center">{t('header')}</Title>
+      <Title ta="center">{dictionary.header}</Title>
       <Text ta="center">Sign in to your account to continue</Text>
       <Surface component={Paper} className={classes.card}>
         <TextInput
@@ -102,6 +97,6 @@ export default async function SignIn({ params: { locale } }: Readonly<{ params: 
           </Text>
         </Center>
       </Surface>
-    </TranslationsProvider>
+    </>
   )
 }
